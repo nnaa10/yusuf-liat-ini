@@ -1,192 +1,209 @@
 <!DOCTYPE html>
 <html lang="id">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Halo Yusuf</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Halo Yusuf</title>
 
-  <!-- Google Font -->
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;600;700&display=swap" rel="stylesheet">
 
-  <style>
-    * {
-      margin: 0;
-      padding: 0;
-      box-sizing: border-box;
-      font-family: 'Inter', sans-serif;
-    }
+<style>
+*{margin:0;padding:0;box-sizing:border-box;font-family:'Plus Jakarta Sans',sans-serif}
 
-    body {
-      min-height: 100vh;
-      background: radial-gradient(circle at top, #1b2a4e, #05070d);
-      color: #ffffff;
-      overflow: hidden;
-    }
+body{
+  min-height:100vh;
+  overflow:hidden;
+  background:linear-gradient(120deg,#667eea,#764ba2,#43cea2,#ffb347);
+  background-size:400% 400%;
+  animation:bgMove 14s ease infinite;
+}
 
-    /* Particle background */
-    .particle {
-      position: absolute;
-      width: 2px;
-      height: 2px;
-      background: rgba(255,255,255,0.4);
-      animation: floatParticle linear infinite;
-    }
+@keyframes bgMove{
+  0%{background-position:0% 50%}
+  50%{background-position:100% 50%}
+  100%{background-position:0% 50%}
+}
 
-    @keyframes floatParticle {
-      from { transform: translateY(100vh); }
-      to { transform: translateY(-10vh); }
-    }
+/* glowing blobs */
+.blob{
+  position:absolute;
+  width:320px;
+  height:320px;
+  border-radius:50%;
+  filter:blur(90px);
+  opacity:.6;
+  animation:blobFloat 12s infinite alternate;
+}
+.blob.one{background:#ffd194;top:10%;left:10%}
+.blob.two{background:#a18cd1;bottom:10%;right:10%}
+.blob.three{background:#84fab0;top:50%;right:20%}
 
-    .container {
-      position: relative;
-      z-index: 10;
-      height: 100vh;
-      display: flex;
-      flex-direction: column;
-      justify-content: center;
-      align-items: center;
-      text-align: center;
-      gap: 24px;
-      padding: 20px;
-    }
+@keyframes blobFloat{
+  from{transform:translateY(0)}
+  to{transform:translateY(-80px)}
+}
 
-    h1 {
-      font-size: 3rem;
-      font-weight: 600;
-      letter-spacing: 1px;
-      text-shadow: 0 0 20px rgba(100,150,255,0.4);
-    }
+.container{
+  position:relative;
+  z-index:10;
+  height:100vh;
+  display:flex;
+  flex-direction:column;
+  justify-content:center;
+  align-items:center;
+  gap:30px;
+  text-align:center;
+  color:white;
+  padding:20px;
+}
 
-    .cards {
-      display: flex;
-      gap: 20px;
-      flex-wrap: wrap;
-      justify-content: center;
-    }
+h1{
+  font-size:3.2rem;
+  font-weight:700;
+  text-shadow:0 10px 30px rgba(0,0,0,.25);
+}
 
-    .card {
-      width: 220px;
-      padding: 20px;
-      background: rgba(255,255,255,0.08);
-      backdrop-filter: blur(14px);
-      border-radius: 16px;
-      cursor: pointer;
-      transition: all 0.4s ease;
-      border: 1px solid rgba(255,255,255,0.15);
-    }
+/* icons */
+.icons{
+  display:flex;
+  gap:30px;
+}
 
-    .card:hover {
-      transform: translateY(-8px) scale(1.05);
-      box-shadow: 0 20px 40px rgba(0,0,0,0.4);
-    }
+.icon{
+  width:70px;
+  height:70px;
+  border-radius:20px;
+  background:rgba(255,255,255,.25);
+  backdrop-filter:blur(12px);
+  display:flex;
+  justify-content:center;
+  align-items:center;
+  cursor:pointer;
+  transition:.4s;
+  box-shadow:0 20px 40px rgba(0,0,0,.2);
+}
 
-    .card h3 {
-      font-weight: 400;
-      font-size: 1.1rem;
-    }
+.icon:hover{
+  transform:translateY(-8px) scale(1.08);
+}
 
-    .output {
-      max-width: 600px;
-      margin-top: 20px;
-      font-size: 1rem;
-      line-height: 1.6;
-      opacity: 0;
-      transition: opacity 0.5s ease;
-    }
+.icon svg{
+  width:36px;
+  height:36px;
+  stroke:white;
+}
 
-    .output.show {
-      opacity: 1;
-    }
+/* verse box */
+.output{
+  background:rgba(255,255,255,.85);
+  color:#333;
+  padding:22px 26px;
+  border-radius:16px;
+  max-width:600px;
+  opacity:0;
+  transform:translateY(10px);
+  transition:.4s;
+}
 
-    /* Floating text */
-    .floating-text {
-      position: absolute;
-      color: rgba(200,220,255,0.9);
-      font-size: 0.9rem;
-      animation: floatUp 5s ease forwards;
-      pointer-events: none;
-      text-shadow: 0 0 10px rgba(120,160,255,0.6);
-    }
+.output.show{
+  opacity:1;
+  transform:translateY(0);
+}
 
-    @keyframes floatUp {
-      from {
-        transform: translateY(0);
-        opacity: 1;
-      }
-      to {
-        transform: translateY(-160px);
-        opacity: 0;
-      }
-    }
+/* floating text */
+.float{
+  position:absolute;
+  font-size:1.05rem;
+  color:white;
+  pointer-events:none;
+  animation:fly 6s ease forwards;
+  text-shadow:0 8px 20px rgba(0,0,0,.25);
+}
 
-    @media (max-width: 600px) {
-      h1 { font-size: 2.3rem; }
-      .card { width: 180px; }
-    }
-  </style>
+@keyframes fly{
+  from{opacity:0;transform:translateY(40px)}
+  to{opacity:1;transform:translateY(-200px)}
+}
+
+@media(max-width:600px){
+  h1{font-size:2.4rem}
+}
+</style>
 </head>
+
 <body>
 
-  <!-- Particle Generator -->
-  <script>
-    for (let i = 0; i < 80; i++) {
-      const p = document.createElement("div");
-      p.className = "particle";
-      p.style.left = Math.random() * 100 + "vw";
-      p.style.animationDuration = 10 + Math.random() * 20 + "s";
-      p.style.opacity = Math.random();
-      document.body.appendChild(p);
-    }
-  </script>
+<div class="blob one"></div>
+<div class="blob two"></div>
+<div class="blob three"></div>
 
-  <div class="container">
-    <h1>Halo Yusuf</h1>
+<div class="container">
+  <h1>Halo Yusuf</h1>
 
-    <div class="cards">
-      <div class="card" onclick="showVerse()">
-        <h3>Ayat Penguat</h3>
-      </div>
-      <div class="card" onclick="floatingWords()">
-        <h3>Pesan</h3>
-      </div>
+  <div class="icons">
+
+    <!-- CROSS ICON -->
+    <div class="icon" onclick="spawnWords()">
+      <svg viewBox="0 0 24 24" fill="none" stroke-width="2">
+        <path d="M12 2v20M5 9h14"/>
+      </svg>
     </div>
 
-    <div id="output" class="output"></div>
+    <!-- SMILE ICON -->
+    <div class="icon" onclick="spawnSmileWords()">
+      <svg viewBox="0 0 24 24" fill="none" stroke-width="2">
+        <circle cx="12" cy="12" r="9"/>
+        <path d="M8 14s1.5 2 4 2 4-2 4-2"/>
+        <path d="M9 9h.01M15 9h.01"/>
+      </svg>
+    </div>
+
   </div>
 
-  <script>
-    const output = document.getElementById("output");
+  <div id="output" class="output"></div>
+</div>
 
-    function showVerse() {
-      output.innerHTML = `
-        <strong>Filipi 4:13</strong><br>
-        “Segala perkara dapat kutanggung di dalam Dia yang memberi kekuatan kepadaku.”
-      `;
-      output.classList.add("show");
-    }
+<script>
+const output=document.getElementById("output");
 
-    function floatingWords() {
-      const words = [
-        "Tetap semangat",
-        "Tetap bersyukur",
-        "Andalkan Tuhan selalu",
-        "God bless you"
-      ];
+const words=[
+  "Tetap semangat",
+  "Tetap bersyukur",
+  "Tuhan selalu setia",
+  "Jangan menyerah",
+  "Andalkan Tuhan selalu",
+  "Kamu tidak sendiri",
+  "God bless you"
+];
 
-      words.forEach((word, i) => {
-        setTimeout(() => {
-          const span = document.createElement("div");
-          span.className = "floating-text";
-          span.innerText = word;
-          span.style.left = Math.random() * 80 + 10 + "vw";
-          span.style.top = Math.random() * 60 + 20 + "vh";
-          document.body.appendChild(span);
+function spawnWords(){
+  output.innerHTML=`
+    <strong>Filipi 4:13</strong><br><br>
+    Segala perkara dapat kutanggung di dalam Dia yang memberi kekuatan kepadaku.
+  `;
+  output.classList.add("show");
 
-          setTimeout(() => span.remove(), 5000);
-        }, i * 400);
-      });
-    }
-  </script>
+  for(let i=0;i<14;i++){
+    createFloat(words[Math.floor(Math.random()*words.length)]);
+  }
+}
+
+function spawnSmileWords(){
+  for(let i=0;i<18;i++){
+    createFloat(words[Math.floor(Math.random()*words.length)]);
+  }
+}
+
+function createFloat(text){
+  const el=document.createElement("div");
+  el.className="float";
+  el.innerText=text;
+  el.style.left=Math.random()*80+10+"vw";
+  el.style.top=Math.random()*60+30+"vh";
+  document.body.appendChild(el);
+  setTimeout(()=>el.remove(),6000);
+}
+</script>
 
 </body>
 </html>
