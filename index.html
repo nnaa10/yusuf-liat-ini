@@ -1,13 +1,16 @@
 <!DOCTYPE html>
 <html lang="id">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>Halo Yusuf - Penyemangat Spesial</title>
-<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;600;700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;600;700&display=swap" rel="stylesheet" />
 
 <style>
-  * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Plus Jakarta Sans', sans-serif; }
+  * {
+    margin: 0; padding: 0; box-sizing: border-box;
+    font-family: 'Plus Jakarta Sans', sans-serif;
+  }
 
   body {
     min-height: 100vh;
@@ -41,7 +44,10 @@
   .blob.two { background: #6a82fb; bottom: 10%; right: 8%; animation-delay: 3s; }
   .blob.three { background: #fc5c7d; top: 50%; right: 20%; animation-delay: 6s; }
 
-  @keyframes floatBlob { 0% { transform: translateY(0); } 100% { transform: translateY(-70px); } }
+  @keyframes floatBlob {
+    0% { transform: translateY(0); }
+    100% { transform: translateY(-70px); }
+  }
 
   .container {
     position: relative;
@@ -63,10 +69,10 @@
     text-shadow: 0 10px 40px rgba(0,0,0,0.45);
   }
 
-  /* Tombol salib klasik */
+  /* Tombol salib tebal dan proporsional */
   .icon-cross {
-    width: 60px;
-    height: 60px;
+    width: 80px;
+    height: 112px;
     cursor: pointer;
     display: flex;
     justify-content: center;
@@ -74,15 +80,17 @@
     transition: transform 0.3s ease;
   }
 
-  .icon-cross:hover { transform: scale(1.2); }
+  .icon-cross:hover {
+    transform: scale(1.15);
+  }
 
   .icon-cross svg {
-    width: 100%;
-    height: 100%;
+    width: 80px;
+    height: 112px;
     stroke: white;
-    stroke-width: 4;
-    stroke-linecap: round;
-    stroke-linejoin: round;
+    stroke-width: 24;
+    stroke-linecap: butt;
+    stroke-linejoin: miter;
   }
 
   /* Output box */
@@ -103,7 +111,10 @@
     box-shadow: 0 15px 35px rgba(0,0,0,0.2);
   }
 
-  .output.show { opacity: 1; transform: translateY(0); }
+  .output.show {
+    opacity: 1;
+    transform: translateY(0);
+  }
 
   /* Floating text */
   .float-text {
@@ -120,14 +131,28 @@
   }
 
   @keyframes floatUpFade {
-    0% { opacity: 1; transform: translateY(0) scale(1); }
-    100% { opacity: 0; transform: translateY(-180px) scale(1.3); }
+    0% {
+      opacity: 1;
+      transform: translateY(0) scale(1);
+    }
+    100% {
+      opacity: 0;
+      transform: translateY(-180px) scale(1.3);
+    }
   }
 
-  @media (max-width: 600px){
-    h1 { font-size: 2.8rem; }
-    .output { max-width: 90vw; font-size: 1.1rem; padding: 20px 24px; }
-    .float-text { font-size: 1rem; }
+  @media (max-width: 600px) {
+    h1 {
+      font-size: 2.8rem;
+    }
+    .output {
+      max-width: 90vw;
+      font-size: 1.1rem;
+      padding: 20px 24px;
+    }
+    .float-text {
+      font-size: 1rem;
+    }
   }
 </style>
 </head>
@@ -140,69 +165,73 @@
   <div class="container">
     <h1>Halo Yusuf</h1>
 
-    <div class="icon-cross" role="button" tabindex="0" title="Klik untuk tampilkan ayat Filipi 4:13">
-      <svg viewBox="0 0 24 24" fill="none">
-        <line x1="12" y1="2" x2="12" y2="22"/>
-        <line x1="5" y1="12" x2="19" y2="12"/>
+    <div class="icon-cross" role="button" tabindex="0" title="Klik untuk tampilkan ayat Filipi 4:13" aria-label="Tombol salib Filipi 4:13">
+      <svg viewBox="0 0 100 140" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <line x1="50" y1="10" x2="50" y2="130"/>
+        <line x1="10" y1="60" x2="90" y2="60"/>
       </svg>
     </div>
 
-    <div id="output" class="output"></div>
+    <div id="output" class="output" aria-live="polite" aria-atomic="true"></div>
   </div>
 
 <script>
-const crossBtn = document.querySelector('.icon-cross');
-const output = document.getElementById('output');
+  const crossBtn = document.querySelector('.icon-cross');
+  const output = document.getElementById('output');
 
-const encouragementWords = [
-  "Tetap semangat, Yusuf!",
-  "Tetap bersyukur, Yusuf!",
-  "Andalkan Tuhan selalu, Yusuf!",
-  "God bless you, Yusuf!",
-  "Jangan menyerah, Yusuf!",
-  "Tuhan selalu menyertaimu, Yusuf!",
-  "Kamu luar biasa, Yusuf!",
-  "Percaya dan berdoa, Yusuf!",
-  "Harapan baru tiap hari, Yusuf!",
-  "Damai sejahtera menyertai, Yusuf!"
-];
+  const encouragementWords = [
+    "Tetap semangat, Yusuf!",
+    "Tetap bersyukur, Yusuf!",
+    "Andalkan Tuhan selalu, Yusuf!",
+    "God bless you, Yusuf!",
+    "Jangan menyerah, Yusuf!",
+    "Tuhan selalu menyertaimu, Yusuf!",
+    "Kamu luar biasa, Yusuf!",
+    "Percaya dan berdoa, Yusuf!",
+    "Harapan baru tiap hari, Yusuf!",
+    "Damai sejahtera menyertai, Yusuf!"
+  ];
 
-// klik salib → tampilkan ayat
-function showVerse(){
-  output.innerHTML = "<strong>Filipi 4:13</strong><br>“Segala perkara dapat kutanggung di dalam Dia yang memberi kekuatan kepadaku.”";
-  output.classList.add('show');
-}
-
-// klik area lain → kata penyemangat melayang
-function createFloatingText(text){
-  const el = document.createElement('div');
-  el.className = 'float-text';
-  el.innerText = text;
-  el.style.left = Math.random()*70 + 15 + 'vw';
-  el.style.top = Math.random()*50 + 30 + 'vh';
-  el.style.animation = 'floatUpFade 6s ease forwards';
-  document.body.appendChild(el);
-  setTimeout(()=>el.remove(),6000);
-}
-
-function spawnEncouragementWords(e){
-  if(e.target.closest('.icon-cross')) return;
-  output.classList.remove('show');
-  for(let i=0;i<15;i++){
-    setTimeout(()=>{
-      const word = encouragementWords[Math.floor(Math.random()*encouragementWords.length)];
-      createFloatingText(word);
-    },i*180);
+  // Klik salib tampilkan ayat
+  function showVerse() {
+    output.innerHTML = "<strong>Filipi 4:13</strong><br>“Segala perkara dapat kutanggung di dalam Dia yang memberi kekuatan kepadaku.”";
+    output.classList.add('show');
   }
-}
 
-crossBtn.addEventListener('click',showVerse);
-document.body.addEventListener('click',spawnEncouragementWords);
+  // Kata penyemangat melayang
+  function createFloatingText(text) {
+    const el = document.createElement('div');
+    el.className = 'float-text';
+    el.innerText = text;
+    el.style.left = Math.random() * 70 + 15 + 'vw';
+    el.style.top = Math.random() * 50 + 30 + 'vh';
+    el.style.animation = 'floatUpFade 6s ease forwards';
+    document.body.appendChild(el);
+    setTimeout(() => el.remove(), 6000);
+  }
 
-// akses keyboard
-crossBtn.addEventListener('keydown', (e)=>{
-  if(e.key==='Enter'||e.key===' '){ e.preventDefault(); showVerse(); }
-});
+  // Klik area selain salib munculkan kata penyemangat
+  function spawnEncouragementWords(e) {
+    if (e.target.closest('.icon-cross')) return;
+    output.classList.remove('show');
+    for (let i = 0; i < 15; i++) {
+      setTimeout(() => {
+        const word = encouragementWords[Math.floor(Math.random() * encouragementWords.length)];
+        createFloatingText(word);
+      }, i * 180);
+    }
+  }
+
+  crossBtn.addEventListener('click', showVerse);
+  document.body.addEventListener('click', spawnEncouragementWords);
+
+  // Keyboard aksesibilitas tombol salib
+  crossBtn.addEventListener('keydown', (e) => {
+    if (e.key === 'Enter' || e.key === ' ') {
+      e.preventDefault();
+      showVerse();
+    }
+  });
 </script>
 
 </body>
