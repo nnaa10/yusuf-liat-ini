@@ -10,32 +10,33 @@
             display: flex;
             justify-content: center;
             align-items: center;
-            height: 100vh;
+            min-height: 100vh;
             margin: 0;
             background: linear-gradient(135deg, #fdfcfb 0%, #e2d1c3 100%);
             font-family: 'Raleway', sans-serif;
-            overflow: hidden;
             text-align: center;
+            overflow-x: hidden;
         }
 
+        .container { padding: 20px; }
+
+        /* Animasi Nama Yusuf */
         .nama-wrapper {
             display: flex;
             justify-content: center;
             gap: 10px;
-            margin-bottom: 30px;
+            margin-bottom: 20px;
         }
 
         .huruf {
             font-family: 'Playfair Display', serif;
-            font-size: 5rem;
+            font-size: 4rem;
             font-weight: bold;
             color: #5d4037;
-            display: inline-block;
             opacity: 0;
-            animation: jatuhPantul 1.2s cubic-bezier(0.175, 0.885, 0.32, 1.275) forwards;
+            animation: jatuhPantul 1s cubic-bezier(0.175, 0.885, 0.32, 1.275) forwards;
         }
 
-        /* Urutan muncul huruf Yusuf */
         .huruf:nth-child(1) { animation-delay: 0.2s; }
         .huruf:nth-child(2) { animation-delay: 0.4s; }
         .huruf:nth-child(3) { animation-delay: 0.6s; }
@@ -43,31 +44,43 @@
         .huruf:nth-child(5) { animation-delay: 1.0s; }
 
         @keyframes jatuhPantul {
-            0% { transform: translateY(-200px) scale(0.5); opacity: 0; }
-            60% { transform: translateY(0) scale(1.2); opacity: 1; }
-            100% { transform: translateY(0) scale(1); opacity: 1; }
+            0% { transform: translateY(-100px); opacity: 0; }
+            100% { transform: translateY(0); opacity: 1; }
         }
 
-        .ayat {
+        /* Tombol Elegan */
+        .btn-pesan {
+            margin-top: 30px;
+            padding: 12px 25px;
+            font-size: 1rem;
+            background-color: #5d4037;
+            color: white;
+            border: none;
+            border-radius: 50px;
+            cursor: pointer;
+            transition: 0.3s;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+        }
+
+        .btn-pesan:hover {
+            background-color: #8d6e63;
+            transform: scale(1.05);
+        }
+
+        /* Tempat Munculnya Pesan */
+        #pesan-rahasia {
+            margin-top: 25px;
             font-family: 'Playfair Display', serif;
-            font-size: 1.5rem;
+            font-size: 1.3rem;
             color: #3e2723;
-            max-width: 600px;
-            margin: 0 auto;
-            font-style: italic;
-            opacity: 0;
-            animation: muncul 2s ease-in forwards;
-            animation-delay: 2.5s;
-        }
-
-        @keyframes muncul {
-            from { opacity: 0; transform: translateY(10px); }
-            to { opacity: 1; transform: translateY(0); }
+            min-height: 1.5em;
+            font-weight: bold;
         }
     </style>
 </head>
 <body>
-    <div>
+
+    <div class="container">
         <div class="nama-wrapper">
             <span class="huruf">Y</span>
             <span class="huruf">u</span>
@@ -75,11 +88,36 @@
             <span class="huruf">u</span>
             <span class="huruf">f</span>
         </div>
-        <div class="ayat">
-            "Segala perkara dapat kutanggung di dalam Dia yang memberi kekuatan kepadaku."
-            <br><br>
-            <strong>FILIPI 4:13</strong>
-        </div>
+
+        <p style="font-style: italic; color: #8d6e63;">"Segala perkara dapat kutanggung di dalam Dia yang memberi kekuatan kepadaku." (Filipi 4:13)</p>
+        
+        <button class="btn-pesan" onclick="tampilkanPesan()">Klik untuk Yusuf</button>
+        
+        <div id="pesan-rahasia"></div>
     </div>
+
+    <script>
+        let index = 0;
+        const daftarPesan = [
+            "God Bless U! ✨",
+            "Semangat jalanin hari ini! 💪",
+            "Jangan lupa andalkan Tuhan. 🙏"
+        ];
+
+        function tampilkanPesan() {
+            const areaPesan = document.getElementById('pesan-rahasia');
+            areaPesan.style.opacity = 0; // Efek fade out singkat
+            
+            setTimeout(() => {
+                areaPesan.innerText = daftarPesan[index];
+                areaPesan.style.opacity = 1;
+                areaPesan.style.transition = "opacity 0.5s";
+                
+                // Ganti pesan ke urutan berikutnya setiap kali diklik
+                index = (index + 1) % daftarPesan.length;
+            }, 200);
+        }
+    </script>
+
 </body>
 </html>
