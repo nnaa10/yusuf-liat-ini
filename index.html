@@ -1,209 +1,281 @@
 <!DOCTYPE html>
 <html lang="id">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Halo Yusuf</title>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Halo Yusuf - Penyemangat</title>
 
-<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;600;700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;600;700&display=swap" rel="stylesheet" />
 
 <style>
-*{margin:0;padding:0;box-sizing:border-box;font-family:'Plus Jakarta Sans',sans-serif}
+  * {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Plus Jakarta Sans', sans-serif;
+  }
 
-body{
-  min-height:100vh;
-  overflow:hidden;
-  background:linear-gradient(120deg,#667eea,#764ba2,#43cea2,#ffb347);
-  background-size:400% 400%;
-  animation:bgMove 14s ease infinite;
-}
+  body {
+    min-height: 100vh;
+    overflow: hidden;
+    background: linear-gradient(120deg, #667eea, #764ba2, #43cea2, #ffb347);
+    background-size: 400% 400%;
+    animation: bgMove 14s ease infinite;
+    color: white;
+    position: relative;
+  }
 
-@keyframes bgMove{
-  0%{background-position:0% 50%}
-  50%{background-position:100% 50%}
-  100%{background-position:0% 50%}
-}
+  @keyframes bgMove {
+    0% { background-position: 0% 50%; }
+    50% { background-position: 100% 50%; }
+    100% { background-position: 0% 50%; }
+  }
 
-/* glowing blobs */
-.blob{
-  position:absolute;
-  width:320px;
-  height:320px;
-  border-radius:50%;
-  filter:blur(90px);
-  opacity:.6;
-  animation:blobFloat 12s infinite alternate;
-}
-.blob.one{background:#ffd194;top:10%;left:10%}
-.blob.two{background:#a18cd1;bottom:10%;right:10%}
-.blob.three{background:#84fab0;top:50%;right:20%}
+  /* Glowing Blobs */
+  .blob {
+    position: absolute;
+    width: 320px;
+    height: 320px;
+    border-radius: 50%;
+    filter: blur(90px);
+    opacity: 0.6;
+    animation: blobFloat 12s infinite alternate;
+    pointer-events: none;
+    user-select: none;
+  }
 
-@keyframes blobFloat{
-  from{transform:translateY(0)}
-  to{transform:translateY(-80px)}
-}
+  .blob.one { background: #ffd194; top: 10%; left: 10%; }
+  .blob.two { background: #a18cd1; bottom: 10%; right: 10%; }
+  .blob.three { background: #84fab0; top: 50%; right: 20%; }
 
-.container{
-  position:relative;
-  z-index:10;
-  height:100vh;
-  display:flex;
-  flex-direction:column;
-  justify-content:center;
-  align-items:center;
-  gap:30px;
-  text-align:center;
-  color:white;
-  padding:20px;
-}
+  @keyframes blobFloat {
+    from { transform: translateY(0); }
+    to { transform: translateY(-80px); }
+  }
 
-h1{
-  font-size:3.2rem;
-  font-weight:700;
-  text-shadow:0 10px 30px rgba(0,0,0,.25);
-}
+  /* Container */
+  .container {
+    position: relative;
+    z-index: 10;
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 30px;
+    text-align: center;
+    padding: 20px;
+  }
 
-/* icons */
-.icons{
-  display:flex;
-  gap:30px;
-}
+  h1 {
+    font-size: 3.2rem;
+    font-weight: 700;
+    text-shadow: 0 10px 30px rgba(0,0,0,0.25);
+  }
 
-.icon{
-  width:70px;
-  height:70px;
-  border-radius:20px;
-  background:rgba(255,255,255,.25);
-  backdrop-filter:blur(12px);
-  display:flex;
-  justify-content:center;
-  align-items:center;
-  cursor:pointer;
-  transition:.4s;
-  box-shadow:0 20px 40px rgba(0,0,0,.2);
-}
+  /* Icons */
+  .icons {
+    display: flex;
+    gap: 40px;
+  }
 
-.icon:hover{
-  transform:translateY(-8px) scale(1.08);
-}
+  .icon {
+    width: 80px;
+    height: 80px;
+    border-radius: 22px;
+    background: rgba(255, 255, 255, 0.25);
+    backdrop-filter: blur(12px);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+    transition: transform 0.4s ease, box-shadow 0.4s ease;
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.2);
+    user-select: none;
+  }
 
-.icon svg{
-  width:36px;
-  height:36px;
-  stroke:white;
-}
+  .icon:hover {
+    transform: translateY(-10px) scale(1.1);
+    box-shadow: 0 30px 50px rgba(0, 0, 0, 0.3);
+  }
 
-/* verse box */
-.output{
-  background:rgba(255,255,255,.85);
-  color:#333;
-  padding:22px 26px;
-  border-radius:16px;
-  max-width:600px;
-  opacity:0;
-  transform:translateY(10px);
-  transition:.4s;
-}
+  .icon svg {
+    width: 40px;
+    height: 40px;
+    stroke: white;
+    stroke-width: 2.5;
+  }
 
-.output.show{
-  opacity:1;
-  transform:translateY(0);
-}
+  /* Output Box */
+  .output {
+    background: rgba(255, 255, 255, 0.9);
+    color: #333;
+    padding: 22px 28px;
+    border-radius: 20px;
+    max-width: 600px;
+    min-height: 100px;
+    font-size: 1.1rem;
+    font-weight: 500;
+    line-height: 1.5;
+    opacity: 0;
+    transform: translateY(15px);
+    transition: opacity 0.5s ease, transform 0.5s ease;
+  }
 
-/* floating text */
-.float{
-  position:absolute;
-  font-size:1.05rem;
-  color:white;
-  pointer-events:none;
-  animation:fly 6s ease forwards;
-  text-shadow:0 8px 20px rgba(0,0,0,.25);
-}
+  .output.show {
+    opacity: 1;
+    transform: translateY(0);
+  }
 
-@keyframes fly{
-  from{opacity:0;transform:translateY(40px)}
-  to{opacity:1;transform:translateY(-200px)}
-}
+  /* Floating text for encouragement */
+  .float-text {
+    position: absolute;
+    font-size: 1.1rem;
+    font-weight: 600;
+    color: #fff;
+    pointer-events: none;
+    user-select: none;
+    text-shadow: 0 0 10px rgba(0, 0, 0, 0.45);
+    animation-timing-function: ease-out;
+    animation-fill-mode: forwards;
+  }
 
-@media(max-width:600px){
-  h1{font-size:2.4rem}
-}
+  /* Animations for floating texts */
+  @keyframes floatUpFade {
+    0% {
+      opacity: 1;
+      transform: translateY(0) scale(1);
+    }
+    100% {
+      opacity: 0;
+      transform: translateY(-180px) scale(1.3);
+    }
+  }
+
+  @keyframes floatSideways {
+    0% {
+      opacity: 1;
+      transform: translate(0, 0) scale(1);
+    }
+    100% {
+      opacity: 0;
+      transform: translate(120px, -140px) scale(1.1);
+    }
+  }
+
+  /* Responsive */
+  @media (max-width: 600px) {
+    h1 {
+      font-size: 2.4rem;
+    }
+    .icon {
+      width: 60px;
+      height: 60px;
+      border-radius: 16px;
+    }
+    .icon svg {
+      width: 28px;
+      height: 28px;
+    }
+  }
 </style>
 </head>
 
 <body>
 
-<div class="blob one"></div>
-<div class="blob two"></div>
-<div class="blob three"></div>
+  <!-- Blobs -->
+  <div class="blob one"></div>
+  <div class="blob two"></div>
+  <div class="blob three"></div>
 
-<div class="container">
-  <h1>Halo Yusuf</h1>
+  <div class="container">
+    <h1>Halo Yusuf</h1>
 
-  <div class="icons">
+    <div class="icons" role="group" aria-label="Tombol interaktif">
+      <!-- Salib -->
+      <button class="icon" aria-label="Tombol Ayat Penguat" id="btnCross" type="button" title="Tampilkan Ayat Filipi 4:13">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <line x1="12" y1="2" x2="12" y2="22" />
+          <line x1="5" y1="12" x2="19" y2="12" />
+        </svg>
+      </button>
 
-    <!-- CROSS ICON -->
-    <div class="icon" onclick="spawnWords()">
-      <svg viewBox="0 0 24 24" fill="none" stroke-width="2">
-        <path d="M12 2v20M5 9h14"/>
-      </svg>
+      <!-- Senyum -->
+      <button class="icon" aria-label="Tombol Kata Penyemangat" id="btnSmile" type="button" title="Tampilkan Kata Kata Penyemangat">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <circle cx="12" cy="12" r="9" />
+          <path d="M8 14s1.5 2 4 2 4-2 4-2" />
+          <line x1="9" y1="9" x2="9.01" y2="9" />
+          <line x1="15" y1="9" x2="15.01" y2="9" />
+        </svg>
+      </button>
     </div>
 
-    <!-- SMILE ICON -->
-    <div class="icon" onclick="spawnSmileWords()">
-      <svg viewBox="0 0 24 24" fill="none" stroke-width="2">
-        <circle cx="12" cy="12" r="9"/>
-        <path d="M8 14s1.5 2 4 2 4-2 4-2"/>
-        <path d="M9 9h.01M15 9h.01"/>
-      </svg>
-    </div>
-
+    <div id="output" class="output" aria-live="polite" aria-atomic="true"></div>
   </div>
 
-  <div id="output" class="output"></div>
-</div>
+  <script>
+    const btnCross = document.getElementById('btnCross');
+    const btnSmile = document.getElementById('btnSmile');
+    const output = document.getElementById('output');
 
-<script>
-const output=document.getElementById("output");
+    const encouragementWords = [
+      "Tetap semangat",
+      "Tetap bersyukur",
+      "Andalkan Tuhan selalu",
+      "God bless you",
+      "Jangan menyerah",
+      "Tuhan menyertaimu",
+      "Kamu luar biasa",
+      "Percaya dan berdoa",
+      "Harapan baru tiap hari",
+      "Damai sejahtera menyertai"
+    ];
 
-const words=[
-  "Tetap semangat",
-  "Tetap bersyukur",
-  "Tuhan selalu setia",
-  "Jangan menyerah",
-  "Andalkan Tuhan selalu",
-  "Kamu tidak sendiri",
-  "God bless you"
-];
+    // Fungsi tampilkan ayat dengan animasi
+    function showVerse() {
+      output.innerHTML = `<strong>Filipi 4:13</strong><br>“Segala perkara dapat kutanggung di dalam Dia yang memberi kekuatan kepadaku.”`;
+      output.classList.add('show');
+    }
 
-function spawnWords(){
-  output.innerHTML=`
-    <strong>Filipi 4:13</strong><br><br>
-    Segala perkara dapat kutanggung di dalam Dia yang memberi kekuatan kepadaku.
-  `;
-  output.classList.add("show");
+    // Fungsi buat floating teks penyemangat
+    function createFloatingText(text) {
+      const floatEl = document.createElement('div');
+      floatEl.className = 'float-text';
+      floatEl.innerText = text;
 
-  for(let i=0;i<14;i++){
-    createFloat(words[Math.floor(Math.random()*words.length)]);
-  }
-}
+      // posisi acak dalam viewport (hindari pinggir banget)
+      floatEl.style.left = Math.random() * 70 + 15 + 'vw';
+      floatEl.style.top = Math.random() * 50 + 25 + 'vh';
 
-function spawnSmileWords(){
-  for(let i=0;i<18;i++){
-    createFloat(words[Math.floor(Math.random()*words.length)]);
-  }
-}
+      // animasi acak: floatUpFade atau floatSideways
+      const anim = Math.random() > 0.5 ? 'floatUpFade' : 'floatSideways';
+      floatEl.style.animation = `${anim} 6s ease forwards`;
 
-function createFloat(text){
-  const el=document.createElement("div");
-  el.className="float";
-  el.innerText=text;
-  el.style.left=Math.random()*80+10+"vw";
-  el.style.top=Math.random()*60+30+"vh";
-  document.body.appendChild(el);
-  setTimeout(()=>el.remove(),6000);
-}
-</script>
+      document.body.appendChild(floatEl);
+
+      // hilang setelah anim selesai
+      setTimeout(() => {
+        floatEl.remove();
+      }, 6000);
+    }
+
+    // Fungsi tombol senyum: munculin banyak kata penyemangat melayang
+    function showEncouragement() {
+      output.classList.remove('show'); // sembunyikan output ayat kalau ada
+
+      // bikin 20 kata melayang bertahap
+      for (let i = 0; i < 20; i++) {
+        setTimeout(() => {
+          const word = encouragementWords[Math.floor(Math.random() * encouragementWords.length)];
+          createFloatingText(word);
+        }, i * 250);
+      }
+    }
+
+    btnCross.addEventListener('click', showVerse);
+    btnSmile.addEventListener('click', showEncouragement);
+  </script>
 
 </body>
 </html>
