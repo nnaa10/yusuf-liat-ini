@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Web Buat Teman</title>
+    <style>
+        body {
+            background-color: #f0f8ff;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            flex-direction: column;
+            font-family: 'Arial', sans-serif;
+        }
+        /* Ini kodingan untuk membuat nama bergerak */
+        .nama {
+            font-size: 50px;
+            font-weight: bold;
+            color: #ff4757;
+            animation: gerak 2s infinite alternate;
+        }
+        @keyframes gerak {
+            from { transform: scale(1); }
+            to { transform: scale(1.2) rotate(5deg); }
+        }
+    </style>
+</head>
+<body>
+    <div class="nama">Halo, [Nama Temanmu]!</div>
+    <p>Ciee, websitenya sudah jadi!</p>
+</body>
+</html>
