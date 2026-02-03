@@ -1,180 +1,192 @@
 <!DOCTYPE html>
 <html lang="id">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Untuk Yusuf</title>
-    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500&display=swap" rel="stylesheet">
-    <style>
-        :root {
-            --bg-color: #fafafa;
-            --text-main: #1a1a1a;
-            --text-muted: #666666;
-            --navy-soft: #0a2342;
-            --accent: #d1d5db;
-        }
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Halo Yusuf</title>
 
-        body {
-            margin: 0;
-            padding: 0;
-            background-color: var(--bg-color);
-            color: var(--text-main);
-            font-family: 'Plus Jakarta Sans', sans-serif;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            height: 100vh;
-            overflow: hidden; /* Mencegah scroll saat teks melayang */
-        }
+  <!-- Google Font -->
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600&display=swap" rel="stylesheet">
 
-        .main-container {
-            text-align: center;
-            z-index: 10;
-            padding: 20px;
-        }
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: 'Inter', sans-serif;
+    }
 
-        h1 {
-            font-weight: 500;
-            font-size: 2.2rem;
-            margin-bottom: 10px;
-            letter-spacing: -0.5px;
-        }
+    body {
+      min-height: 100vh;
+      background: radial-gradient(circle at top, #1b2a4e, #05070d);
+      color: #ffffff;
+      overflow: hidden;
+    }
 
-        .intro {
-            color: var(--text-muted);
-            font-weight: 300;
-            margin-bottom: 50px;
-        }
+    /* Particle background */
+    .particle {
+      position: absolute;
+      width: 2px;
+      height: 2px;
+      background: rgba(255,255,255,0.4);
+      animation: floatParticle linear infinite;
+    }
 
-        .btn-group {
-            display: flex;
-            flex-direction: column;
-            gap: 15px;
-            max-width: 250px;
-            margin: 0 auto;
-        }
+    @keyframes floatParticle {
+      from { transform: translateY(100vh); }
+      to { transform: translateY(-10vh); }
+    }
 
-        button {
-            background: white;
-            border: 1px solid var(--accent);
-            padding: 14px 20px;
-            border-radius: 12px;
-            font-family: inherit;
-            font-size: 0.95rem;
-            color: var(--navy-soft);
-            cursor: pointer;
-            transition: all 0.4s cubic-bezier(0.165, 0.84, 0.44, 1);
-        }
+    .container {
+      position: relative;
+      z-index: 10;
+      height: 100vh;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      text-align: center;
+      gap: 24px;
+      padding: 20px;
+    }
 
-        button:hover {
-            border-color: var(--navy-soft);
-            box-shadow: 0 10px 20px rgba(0,0,0,0.03);
-            transform: translateY(-2px);
-        }
+    h1 {
+      font-size: 3rem;
+      font-weight: 600;
+      letter-spacing: 1px;
+      text-shadow: 0 0 20px rgba(100,150,255,0.4);
+    }
 
-        /* Styling Ayat */
-        #verse-section {
-            margin-top: 40px;
-            opacity: 0;
-            transform: translateY(10px);
-            transition: all 0.8s ease;
-        }
+    .cards {
+      display: flex;
+      gap: 20px;
+      flex-wrap: wrap;
+      justify-content: center;
+    }
 
-        .verse-text {
-            font-size: 1.1rem;
-            line-height: 1.7;
-            font-style: italic;
-            max-width: 450px;
-            margin: 0 auto;
-        }
+    .card {
+      width: 220px;
+      padding: 20px;
+      background: rgba(255,255,255,0.08);
+      backdrop-filter: blur(14px);
+      border-radius: 16px;
+      cursor: pointer;
+      transition: all 0.4s ease;
+      border: 1px solid rgba(255,255,255,0.15);
+    }
 
-        /* Floating Text Style */
-        .floating-text {
-            position: absolute;
-            bottom: 20%;
-            pointer-events: none;
-            color: var(--navy-soft);
-            font-weight: 400;
-            font-size: 1rem;
-            white-space: nowrap;
-            opacity: 0;
-            animation: floatUp 4s ease-out forwards;
-            text-shadow: 0 0 15px rgba(255, 255, 255, 0.8);
-        }
+    .card:hover {
+      transform: translateY(-8px) scale(1.05);
+      box-shadow: 0 20px 40px rgba(0,0,0,0.4);
+    }
 
-        @keyframes floatUp {
-            0% {
-                transform: translateY(0) translateX(var(--random-x));
-                opacity: 0;
-            }
-            20% {
-                opacity: 0.7;
-            }
-            100% {
-                transform: translateY(-400px) translateX(calc(var(--random-x) * 1.5));
-                opacity: 0;
-            }
-        }
-    </style>
+    .card h3 {
+      font-weight: 400;
+      font-size: 1.1rem;
+    }
+
+    .output {
+      max-width: 600px;
+      margin-top: 20px;
+      font-size: 1rem;
+      line-height: 1.6;
+      opacity: 0;
+      transition: opacity 0.5s ease;
+    }
+
+    .output.show {
+      opacity: 1;
+    }
+
+    /* Floating text */
+    .floating-text {
+      position: absolute;
+      color: rgba(200,220,255,0.9);
+      font-size: 0.9rem;
+      animation: floatUp 5s ease forwards;
+      pointer-events: none;
+      text-shadow: 0 0 10px rgba(120,160,255,0.6);
+    }
+
+    @keyframes floatUp {
+      from {
+        transform: translateY(0);
+        opacity: 1;
+      }
+      to {
+        transform: translateY(-160px);
+        opacity: 0;
+      }
+    }
+
+    @media (max-width: 600px) {
+      h1 { font-size: 2.3rem; }
+      .card { width: 180px; }
+    }
+  </style>
 </head>
 <body>
 
-    <div class="main-container">
-        <h1>Halo Yusuf</h1>
-        <p class="intro">Sejenak untukmu hari ini.</p>
+  <!-- Particle Generator -->
+  <script>
+    for (let i = 0; i < 80; i++) {
+      const p = document.createElement("div");
+      p.className = "particle";
+      p.style.left = Math.random() * 100 + "vw";
+      p.style.animationDuration = 10 + Math.random() * 20 + "s";
+      p.style.opacity = Math.random();
+      document.body.appendChild(p);
+    }
+  </script>
 
-        <div class="btn-group">
-            <button onclick="showVerse()">Ayat Penguat</button>
-            <button onclick="spawnFloatingWords()">Pesan</button>
-        </div>
+  <div class="container">
+    <h1>Halo Yusuf</h1>
 
-        <div id="verse-section">
-            <p class="verse-text">"Segala perkara dapat kutanggung di dalam Dia yang memberi kekuatan kepadaku."</p>
-            <p style="font-size: 0.8rem; letter-spacing: 2px; margin-top: 10px; color: var(--text-muted);">FILIPI 4:13</p>
-        </div>
+    <div class="cards">
+      <div class="card" onclick="showVerse()">
+        <h3>Ayat Penguat</h3>
+      </div>
+      <div class="card" onclick="floatingWords()">
+        <h3>Pesan</h3>
+      </div>
     </div>
 
-    <script>
-        function showVerse() {
-            const verse = document.getElementById('verse-section');
-            verse.style.opacity = '1';
-            verse.style.transform = 'translateY(0)';
-        }
+    <div id="output" class="output"></div>
+  </div>
 
-        function spawnFloatingWords() {
-            const words = [
-                "Tetap semangat", 
-                "Tetap bersyukur", 
-                "Andalkan Tuhan selalu", 
-                "God bless you"
-            ];
+  <script>
+    const output = document.getElementById("output");
 
-            words.forEach((text, index) => {
-                setTimeout(() => {
-                    createFloatingElement(text);
-                }, index * 800); // Delay antar kata muncul
-            });
-        }
+    function showVerse() {
+      output.innerHTML = `
+        <strong>Filipi 4:13</strong><br>
+        “Segala perkara dapat kutanggung di dalam Dia yang memberi kekuatan kepadaku.”
+      `;
+      output.classList.add("show");
+    }
 
-        function createFloatingElement(text) {
-            const el = document.createElement('div');
-            el.className = 'floating-text';
-            el.innerText = text;
-            
-            // Variabel acak untuk posisi kiri-kanan
-            const randomX = Math.floor(Math.random() * 200) - 100; // -100px ke 100px
-            const startX = Math.floor(Math.random() * 80) + 10; // Posisi horizontal mulai
-            
-            el.style.left = startX + '%';
-            el.style.setProperty('--random-x', randomX + 'px');
-            
-            document.body.appendChild(el);
+    function floatingWords() {
+      const words = [
+        "Tetap semangat",
+        "Tetap bersyukur",
+        "Andalkan Tuhan selalu",
+        "God bless you"
+      ];
 
-            // Hapus elemen setelah animasi selesai agar tidak membebani memori
-            setTimeout(() => {
-                el.remove();
-            }, 4000);
-        }
-    </script>
+      words.forEach((word, i) => {
+        setTimeout(() => {
+          const span = document.createElement("div");
+          span.className = "floating-text";
+          span.innerText = word;
+          span.style.left = Math.random() * 80 + 10 + "vw";
+          span.style.top = Math.random() * 60 + 20 + "vh";
+          document.body.appendChild(span);
+
+          setTimeout(() => span.remove(), 5000);
+        }, i * 400);
+      });
+    }
+  </script>
+
 </body>
 </html>
