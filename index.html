@@ -4,120 +4,160 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Untuk Yusuf</title>
-    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,700;1,400&family=Raleway:wght@300&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600&display=swap" rel="stylesheet">
     <style>
+        :root {
+            --bg-color: #ffffff;
+            --text-main: #1d1d1f;
+            --text-muted: #86868b;
+            --navy: #002d5e;
+            --border: #e5e5e7;
+        }
+
         body {
+            margin: 0;
+            padding: 0;
+            background-color: var(--bg-color);
+            color: var(--text-main);
+            font-family: 'Inter', -apple-system, sans-serif;
             display: flex;
             justify-content: center;
             align-items: center;
-            min-height: 100vh;
-            margin: 0;
-            background: linear-gradient(135deg, #fdfcfb 0%, #e2d1c3 100%);
-            font-family: 'Raleway', sans-serif;
+            height: 100vh;
+            -webkit-font-smoothing: antialiased;
+        }
+
+        .main-card {
             text-align: center;
-            overflow-x: hidden;
+            max-width: 400px;
+            width: 90%;
+            padding: 40px;
+            animation: fadeIn 1.5s ease-out;
         }
 
-        .container { padding: 20px; }
-
-        /* Animasi Nama Yusuf */
-        .nama-wrapper {
-            display: flex;
-            justify-content: center;
-            gap: 10px;
-            margin-bottom: 20px;
+        h1 {
+            font-weight: 600;
+            font-size: 2rem;
+            margin-bottom: 8px;
+            letter-spacing: -0.02em;
         }
 
-        .huruf {
-            font-family: 'Playfair Display', serif;
-            font-size: 4rem;
-            font-weight: bold;
-            color: #5d4037;
-            opacity: 0;
-            animation: jatuhPantul 1s cubic-bezier(0.175, 0.885, 0.32, 1.275) forwards;
-        }
-
-        .huruf:nth-child(1) { animation-delay: 0.2s; }
-        .huruf:nth-child(2) { animation-delay: 0.4s; }
-        .huruf:nth-child(3) { animation-delay: 0.6s; }
-        .huruf:nth-child(4) { animation-delay: 0.8s; }
-        .huruf:nth-child(5) { animation-delay: 1.0s; }
-
-        @keyframes jatuhPantul {
-            0% { transform: translateY(-100px); opacity: 0; }
-            100% { transform: translateY(0); opacity: 1; }
-        }
-
-        /* Tombol Elegan */
-        .btn-pesan {
-            margin-top: 30px;
-            padding: 12px 25px;
+        .subtext {
+            color: var(--text-muted);
+            font-weight: 300;
             font-size: 1rem;
-            background-color: #5d4037;
-            color: white;
-            border: none;
-            border-radius: 50px;
+            margin-bottom: 48px;
+        }
+
+        .button-group {
+            display: flex;
+            flex-direction: column;
+            gap: 16px;
+        }
+
+        button {
+            background: none;
+            border: 1px solid var(--border);
+            padding: 14px;
+            border-radius: 8px;
+            font-family: 'Inter', sans-serif;
+            font-size: 0.9rem;
+            color: var(--navy);
             cursor: pointer;
-            transition: 0.3s;
-            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+            transition: all 0.3s ease;
+            letter-spacing: 0.5px;
         }
 
-        .btn-pesan:hover {
-            background-color: #8d6e63;
-            transform: scale(1.05);
+        button:hover {
+            background-color: #f5f5f7;
+            border-color: var(--navy);
+            box-shadow: 0 4px 12px rgba(0,0,0,0.05);
         }
 
-        /* Tempat Munculnya Pesan */
-        #pesan-rahasia {
-            margin-top: 25px;
-            font-family: 'Playfair Display', serif;
-            font-size: 1.3rem;
-            color: #3e2723;
-            min-height: 1.5em;
-            font-weight: bold;
+        .content-display {
+            margin-top: 40px;
+            min-height: 120px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+
+        .display-text {
+            font-size: 1.1rem;
+            line-height: 1.6;
+            color: var(--text-main);
+            opacity: 0;
+            transform: translateY(10px);
+            transition: all 0.6s ease;
+        }
+
+        .display-text.active {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .verse-ref {
+            font-size: 0.8rem;
+            color: var(--text-muted);
+            margin-top: 12px;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+
+        /* Outline Icon Sederhana */
+        .icon-top {
+            width: 30px;
+            height: 30px;
+            margin-bottom: 24px;
+            opacity: 0.6;
         }
     </style>
 </head>
 <body>
 
-    <div class="container">
-        <div class="nama-wrapper">
-            <span class="huruf">Y</span>
-            <span class="huruf">u</span>
-            <span class="huruf">s</span>
-            <span class="huruf">u</span>
-            <span class="huruf">f</span>
+    <div class="main-card">
+        <svg class="icon-top" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M12 3v1m0 16v1m9-9h-1M4 9H3m15.364-6.364l-.707.707M6.343 17.657l-.707.707m12.728 0l-.707-.707M6.343 6.343l-.707-.707"></path>
+        </svg>
+
+        <h1>Halo Yusuf</h1>
+        <p class="subtext">Baca ini sebentar.</p>
+
+        <div class="button-group">
+            <button onclick="showContent('bible')">Ayat Alkitab</button>
+            <button onclick="showContent('message')">Pesan</button>
         </div>
 
-        <p style="font-style: italic; color: #8d6e63;">"Segala perkara dapat kutanggung di dalam Dia yang memberi kekuatan kepadaku." (Filipi 4:13)</p>
-        
-        <button class="btn-pesan" onclick="tampilkanPesan()">Klik untuk Yusuf</button>
-        
-        <div id="pesan-rahasia"></div>
+        <div class="content-display" id="display-area">
+            <div id="text-output" class="display-text"></div>
+            <div id="ref-output" class="verse-ref"></div>
+        </div>
     </div>
 
     <script>
-        let index = 0;
-        const daftarPesan = [
-            "God Bless U! ✨",
-            "Semangat jalanin hari ini! 💪",
-            "Jangan lupa andalkan Tuhan. 🙏"
-        ];
-
-        function tampilkanPesan() {
-            const areaPesan = document.getElementById('pesan-rahasia');
-            areaPesan.style.opacity = 0; // Efek fade out singkat
+        function showContent(type) {
+            const textOutput = document.getElementById('text-output');
+            const refOutput = document.getElementById('ref-output');
+            
+            // Reset animation
+            textOutput.classList.remove('active');
             
             setTimeout(() => {
-                areaPesan.innerText = daftarPesan[index];
-                areaPesan.style.opacity = 1;
-                areaPesan.style.transition = "opacity 0.5s";
-                
-                // Ganti pesan ke urutan berikutnya setiap kali diklik
-                index = (index + 1) % daftarPesan.length;
-            }, 200);
+                if (type === 'bible') {
+                    textOutput.innerHTML = "“Segala perkara dapat kutanggung di dalam Dia yang memberi kekuatan kepadaku.”";
+                    refOutput.innerText = "Filipi 4:13";
+                } else {
+                    textOutput.innerHTML = "Tetap semangat.<br>Tetap bersyukur.<br>Andalkan Tuhan selalu.<br>God bless you.";
+                    refOutput.innerText = "";
+                }
+                textOutput.classList.add('active');
+            }, 300);
         }
     </script>
-
 </body>
 </html>
